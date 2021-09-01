@@ -42,8 +42,14 @@ class LstmModel(nn.Module):
         return reg
 
     def forward(self, x):
-        lstm_out, _ = self.lstm(x)
-        lstm_out_2, _ = self.lstm_2(lstm_out)
+        h0 = Variable(torch.zeros(self.layers * 2, x.size[0], self.hidden_dim, device=device))
+        c0 = Variable(torch.zeros(self.layers * 2, x.size[0], self.hidden_dim, device=device))
+        lstm_out, _ = self.lstm(x, (h0, c0))
+
+        h1 = Variable(torch.zeros(self.layers, x.size[0], self.hidden_dim // 2, device=device))
+        c1 = Variable(torch.zeros(self.layers, x.size[0], self.hidden_dim // 2, device=device))
+
+        lstm_out_2, _ = self.lstm_2(lstm_out, (h1, c1))
         y_pred = self.fc(lstm_out_2[-1].view(self.batch_size, -1))
 
         return y_pred

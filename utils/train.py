@@ -10,6 +10,7 @@ version: 0.1
 """
 
 
+# 해당 변수가 Tensor타입인지 확인합니다.
 def check_tensor(x):
     return torch.Tensor(x) if not isinstance(x, torch.Tensor) else x
 
@@ -27,7 +28,6 @@ def trainer(model, dataloader, optimizer, loss_fn):
 
         model.zero_grad()
         optimizer.zero_grad()
-        model.hidden_layer = [hidden_layer.to(device) for hidden_layer in model.init_hidden()]
         output = model(X)
 
         loss = loss_fn(output, y)
@@ -52,7 +52,6 @@ def validation(model, dataloader, loss_fn):
             X = X.to(device)
             y = y.to(device)
 
-            model.hidden_layer = [hidden_layer.to(device) for hidden_layer in model.init_hidden()]
             output = model(X)
             loss = loss_fn(output, y)
 
@@ -73,7 +72,6 @@ def tester(model, dataloader):
             X = X.to(device)
             y = y.to(device)
 
-            model.hidden_layer = [hidden_layer.to(device) for hidden_layer in model.init_hidden()]
             pred = model(X)
             y_true.append(y.cpu().detach().numpy())
             y_pred.append(pred.cpu().detach().numpy())

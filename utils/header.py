@@ -21,6 +21,7 @@ try:
     import torch
     from torch import nn, optim
     from torch.utils.data import DataLoader, Dataset, TensorDataset
+    from torch.autograd import Variable
 
 except ModuleNotFoundError:
     raise 'torch is not installed. please install torch'

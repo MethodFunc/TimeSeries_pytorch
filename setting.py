@@ -8,6 +8,7 @@ def define_parser():
     '''
     Setting Parameters 
     '''
+    # Data가 들어있는 폴더 혹은 파일 지정
     args.path = './data'
 
     # data setting
@@ -29,6 +30,7 @@ def define_parser():
     args.hidden_size = 128
     args.output = 1
 
+    # 주의: 윈도우 사이즈랑 똑같이 해야 돌아갑니다.
     args.batch_size = 72
     args.num_layers = 2
 

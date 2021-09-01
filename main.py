@@ -13,6 +13,7 @@ describe: makerset변경에 따른 코드 변경.
 """
 
 
+# 데이터를 나누고, torch의 Tensor형식으로 변환합니다.
 def preprocessing_data(f_data, t_data, args):
     x_train, x_val, x_test = split_data(f_data, train_size=0.8, val_size=0.1, test_size=0.1)
     y_train, y_val, y_test = split_data(t_data, train_size=0.8, val_size=0.1, test_size=0.1)
