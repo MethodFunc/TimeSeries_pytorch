@@ -1,8 +1,6 @@
 from ..header import *
 
 
-# todo: add loss function setting
-
 def loss_fn(loss_name):
     if loss_name == 'mse':
         loss = nn.MSELoss()
@@ -14,7 +12,6 @@ def loss_fn(loss_name):
     return loss
 
 
-# todo: add optimizers
 def optim_fn(model, optim_name, learning_rate):
     if optim_name == 'adam':
         optims = optim.Adam(model.parameters(), lr=learning_rate)

@@ -20,7 +20,6 @@ class LstmModel(nn.Module):
         self.hidden_layer = self.init_hidden()
         self.fc = self.make_fc()
 
-        # todo: Build simple lstm model torch version.
         self.lstm = nn.LSTM(self.input, self.hidden_dim, self.layers, batch_first=True, bidirectional=True, dropout=0.3)
         self.lstm_2 = nn.LSTM(self.hidden_dim * 2, self.hidden_dim // 2, 1, bidirectional=True, dropout=0.2)
 
